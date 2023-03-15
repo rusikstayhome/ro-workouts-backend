@@ -1,10 +1,13 @@
 import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
 import exercisesRoutes from './routes/routes';
+import morgan from 'morgan';
 
 const app = express();
 
 app.use(express.json());
+
+app.use(morgan('dev'));
 
 app.use('/api/exercises', exercisesRoutes);
 

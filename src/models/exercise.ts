@@ -2,10 +2,11 @@ import { InferSchemaType, model, Schema } from 'mongoose';
 
 const exerciseSchema = new Schema(
   {
-    title: { type: String, required: true },
+    title: { type: String, required: true, unique: true },
     description: { type: String },
     videoUrl: { type: String },
     difficultyLevel: { type: String, required: true },
+    targetMuscle: { type: String, required: true },
   },
   { timestamps: true },
 );

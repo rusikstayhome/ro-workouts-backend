@@ -10,8 +10,18 @@ export const getExercises: RequestHandler = async (req, res, next) => {
   }
 };
 
+export const getExercise: RequestHandler = async (req, res, next) => {
+  const { exerciseId } = req.params;
+  try {
+    const exercise = await ExerciseModel.findById(exerciseId).exec();
+    res.status(200).json(exercise);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const createExercise: RequestHandler = async (req, res, next) => {
-  const { title, description, videoUrl, difficultyLevel } = req.body;
+  const { title, description, videoUrl, difficultyLevel, targetMuscle } = req.body;
 
   try {
     const newExercise = await ExerciseModel.create({
@@ -19,6 +29,7 @@ export const createExercise: RequestHandler = async (req, res, next) => {
       description,
       videoUrl,
       difficultyLevel,
+      targetMuscle,
     });
 
     res.status(201).json(newExercise);
