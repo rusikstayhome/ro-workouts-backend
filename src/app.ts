@@ -1,17 +1,12 @@
 import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
-import ExerciseModel from './models/exercise';
+import exercisesRoutes from './routes/routes';
 
 const app = express();
 
-app.get('/', async (req, res, next) => {
-  try {
-    const exercises = await ExerciseModel.find().exec();
-    res.status(200).json(exercises);
-  } catch (error) {
-    next(error);
-  }
-});
+app.use(express.json());
+
+app.use('/api/exercises', exercisesRoutes);
 
 app.use((req, res, next) => {
   next(Error('Endpoint not found'));
