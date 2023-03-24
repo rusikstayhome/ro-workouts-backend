@@ -1,10 +1,13 @@
+import cors from 'cors';
 import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
-import exercisesRoutes from './routes/routes';
-import morgan from 'morgan';
 import createHttpError, { isHttpError } from 'http-errors';
+import morgan from 'morgan';
+import exercisesRoutes from './routes/routes';
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
