@@ -35,6 +35,7 @@ export const getExercise: RequestHandler = async (req, res, next) => {
 interface CreateExerciseBody {
 	title: string;
 	description?: string;
+	shortDescription?: string;
 	videoUrl?: string;
 	difficultyLevel: string;
 	targetZone: string;
@@ -46,8 +47,14 @@ export const createExercise: RequestHandler<
 	CreateExerciseBody,
 	unknown
 > = async (req, res, next) => {
-	const { title, description, videoUrl, difficultyLevel, targetZone } =
-		req.body;
+	const {
+		title,
+		description,
+		shortDescription,
+		videoUrl,
+		difficultyLevel,
+		targetZone,
+	} = req.body;
 
 	try {
 		const missingFields = [];
@@ -74,6 +81,7 @@ export const createExercise: RequestHandler<
 		const newExercise = await ExerciseModel.create({
 			title,
 			description,
+			shortDescription,
 			videoUrl,
 			difficultyLevel,
 			targetZone,
