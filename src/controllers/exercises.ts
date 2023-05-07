@@ -100,6 +100,7 @@ interface UpdateExerciseParams {
 interface UpdateExerciseBody {
 	title?: string;
 	description?: string;
+	shortDescription?: string;
 	videoUrl?: string;
 	difficultyLevel?: string;
 	targetZone?: string;
@@ -114,6 +115,7 @@ export const updateExercise: RequestHandler<
 	const { exerciseId } = req.params;
 	const newTitle = req.body.title;
 	const newDescription = req.body.description;
+	const newShortDescription = req.body.shortDescription;
 	const newVideoUrl = req.body.videoUrl;
 	const newDifficultyLevel = req.body.difficultyLevel;
 	const newtargetZone = req.body.targetZone;
@@ -152,6 +154,7 @@ export const updateExercise: RequestHandler<
 
 		exercise.title = newTitle;
 		exercise.description = newDescription;
+		exercise.shortDescription = newShortDescription;
 		exercise.videoUrl = newVideoUrl;
 		exercise.difficultyLevel = newDifficultyLevel;
 		exercise.targetZone = newtargetZone;
